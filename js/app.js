@@ -65,6 +65,31 @@ function loadButtons() {
     });
 }
 
+// function showDivination(button, number) {
+//     const meaning = meanings[number];
+
+//     // Reveal number on button
+//     button.textContent = number;
+//     button.classList.add("reveal");
+
+//     // Show meanings after short delay
+//     setTimeout(() => {
+//         document.getElementById("result").innerHTML = `
+//         <center>
+//             ${meaning.core}<br>
+//             ${meaning.ibere}
+//         </center>
+//         `;
+//     }, 1000);
+
+//     // Reset button and reload after some time
+//     setTimeout(() => {
+//         button.textContent = " ";
+//         button.classList.remove("reveal");
+//         setTimeout(loadButtons, 2000);
+//     }, 5000);
+// }
+
 function showDivination(button, number) {
     const meaning = meanings[number];
 
@@ -74,12 +99,17 @@ function showDivination(button, number) {
 
     // Show meanings after short delay
     setTimeout(() => {
-        document.getElementById("result").innerHTML = `
+        const resultEl = document.getElementById("result");
+
+        resultEl.innerHTML = `
         <center>
             ${meaning.core}<br>
             ${meaning.ibere}
         </center>
         `;
+
+        // 🔽 Scroll to bottom after content is rendered
+        resultEl.scrollIntoView({ behavior: "smooth", block: "end" });
     }, 1000);
 
     // Reset button and reload after some time
@@ -89,6 +119,7 @@ function showDivination(button, number) {
         setTimeout(loadButtons, 2000);
     }, 5000);
 }
+
 
 const meanings = {
   1: {
